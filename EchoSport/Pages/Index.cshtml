@@ -1,0 +1,43 @@
+﻿@page
+@model Articles.IndexModel
+@{
+    ViewData["Title"] = "EchoSport";
+}
+
+
+<div class="container">
+    <br/>
+    <div class="row ">
+        <a asp-page="./Articles/Details" asp-route-id="@Model.Article.OrderByDescending(a => a.PublishDate).First().ID">
+            <div class="col-md-10 col-md-offset-1 text-primary">
+                <h1>@Model.Article.OrderByDescending(a => a.PublishDate).First().Title</h1>
+                <p>Published on: @Model.Article.OrderByDescending(a => a.PublishDate).First().PublishDate</p>
+            </div>
+            <div class="col-md-10 col-md-offset-1">
+                <img src="@Model.Article.OrderByDescending(a => a.PublishDate).First().Image" alt="Eriksen" class="img-responsive img-thumbnail" width="100%"/>
+            </div>
+        </a>
+    </div>
+    <br/>
+</div>
+
+
+@foreach (var item in Model.Article.OrderByDescending(a => a.PublishDate).Skip(1).Take(5))
+{
+    <div class="container">
+        <br/>
+        <div class="row ">
+            <a asp-page="./Articles/Details" asp-route-id="@item.ID">
+                <div class="col-md-4 col-md-offset-2">
+                    <img src="@Html.DisplayFor(modelItem => item.Image)" alt="Eriksen" class="img-responsive img-thumbnail" width="100%"/>
+                </div>
+                <div class="col-md-4 text-primary">
+                    <h2>@Html.DisplayFor(modelItem => item.Title)</h2>
+                    <p>Published on: @Html.DisplayFor(modelItem => item.PublishDate)</p>
+                </div>
+            </a>
+        </div>
+        <br/>
+    </div>
+
+}

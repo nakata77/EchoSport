@@ -1,0 +1,50 @@
+﻿@page
+@model EchoSport.Pages.Articles.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <h2>Add Article</h2>
+        <hr />
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Article.Title" class="control-label"></label>
+                <input asp-for="Article.Title" class="form-control"/>
+                <span asp-validation-for="Article.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Sport" class="control-label"></label>
+                <select asp-for="Article.Sport" class="form-control">
+                    <option value="" disabled selected>Select Sport</option>
+                    <option value="Football">Football</option>
+                    <option value="Tennis">Tennis</option>
+                    <option value="Basketball">Basketball</option>
+                    <option value="Other">Other</option>
+                </select>
+                <span asp-validation-for="Article.Sport" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Text" class="control-label"></label>
+                <textarea rows="15" asp-for="Article.Text" class="form-control"></textarea>
+                <span asp-validation-for="Article.Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Article.Image" class="control-label"></label>
+                <input asp-for="Article.Image" class="form-control"/>
+                <span asp-validation-for="Article.Image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,25 @@
+﻿@page
+@model EchoSport.Pages.Articles.TennisModel
+@{
+    ViewData["Title"] = "Tennis";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+@foreach (var item in Model.Article.OrderByDescending(a => a.PublishDate))
+{
+    <a asp-page="./Details" asp-route-id="@item.ID">
+        <div class="container">
+            <br />
+            <div class="row ">
+                <div class="col-md-8 col-md-offset-2 text-primary">
+                    <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
+                    <p>Published on: @Html.DisplayFor(modelItem => item.PublishDate)</p>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <img src="@Html.DisplayFor(modelItem => item.Image)" alt="@Html.DisplayFor(modelItem => item.Title)" class="img-responsive img-thumbnail" width="100%" />
+                </div>
+            </div>
+            <br />
+        </div>
+    </a>
+}
